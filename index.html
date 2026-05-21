@@ -17,6 +17,18 @@
     --text-glow: 0 0 20px rgba(180, 210, 255, 0.4);
   }
 
+  /* Moon locked before midnight */
+  .moon-locked {
+  pointer-events: none;
+  cursor: default;
+  }
+
+/* Moon becomes interactive after midnight */
+  .moon-unlocked {
+  pointer-events: auto;
+  cursor: pointer;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
@@ -848,7 +860,7 @@
 
 <canvas id="sky"></canvas>
 
-<div id="moon-wrapper">
+<div id="moon-wrapper" class="moon-locked">
   <div id="moon" title="Click the moon…it has something for you!"></div>
 </div>
 <div id="moon-whisper">
@@ -1256,6 +1268,17 @@ function triggerBirthday() {
   if (birthdayTriggered) return;
   birthdayTriggered = true;
   clearInterval(cdInterval);
+
+  moonWrapper.classList.remove('moon-locked');
+  moonWrapper.classList.add('moon-unlocked');
+  moonEl.animate([
+    { transform: 'scale(1)' },
+    { transform: 'scale(1.08)' },
+    { transform: 'scale(1)' }
+  ], {
+    duration: 2200,
+    easing: 'ease-in-out'
+  });
 
   const overlay = document.getElementById('transition-overlay');
   overlay.classList.add('fade-in');
