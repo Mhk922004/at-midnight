@@ -1256,8 +1256,20 @@ function updateCountdown() {
   document.getElementById('cd-secs').textContent  = pad(secs);
 }
 
-const cdInterval = setInterval(updateCountdown, 1000);
-updateCountdown();
+if (TEST_MODE) {
+
+  // Force birthday mode instantly
+  setTimeout(() => {
+    triggerBirthday();
+  }, 500);
+
+} else {
+
+  const cdInterval = setInterval(updateCountdown, 1000);
+
+  updateCountdown();
+
+}
 
 /* ═══════════════════════════════════════════
    MIDNIGHT TRANSITION
