@@ -990,6 +990,17 @@ I've asked the moon to always look after you. 🌙
 
 
 <script>
+
+/* ═══════════════════════════════════════════
+   TEST MODE
+═══════════════════════════════════════════ */
+const TEST_MODE = true;
+
+if (TEST_MODE) {
+  window.addEventListener('load', () => {
+    setTimeout(triggerBirthday, 1000);
+  });
+}
 /* ═══════════════════════════════════════════
    SKY & STARS
 ═══════════════════════════════════════════ */
